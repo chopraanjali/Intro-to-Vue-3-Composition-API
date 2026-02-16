@@ -6,6 +6,10 @@ const product = ref('Socks')
 const image = ref(socksGreenImage)
 const inStock = true
 const details = ref(['50% cotton', '30% wool', '20% polyester'])
+const variants = ref([
+  { id: 2234, color: 'green', image: socksGreenImage, sizes: ['S', 'M', 'L'] },
+  { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpeg', sizes: ['S', 'M', 'L', 'XL'] }
+])
 </script>
   
 <template>
@@ -19,6 +23,14 @@ const details = ref(['50% cotton', '30% wool', '20% polyester'])
         <h1>{{ product }}</h1>
         <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+        <div v-for="variant in variants" :key="variant.id">{{ variant.color }}
+          <ul>
+            <li v-for="size in variant.sizes">{{ size }}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
